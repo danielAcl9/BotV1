@@ -1,6 +1,8 @@
 import os
 import discord
 
+import glob, random
+
 #Se crea una instancia del cliente, esta es la conexión con Discord. 
 #Es parte de la librería de discord.py
 client = discord.Client()
@@ -21,5 +23,15 @@ async def on_message(message):
 
   if message.content.startswith('$hello'):
     await message.channel.send('Hello!')
+
+  if message.content.startswith('$img'):
+    file_path_type = ['./Fuente/*.png', './Fuente/*.jpeg', './Fuente/*.jpg']
+    images = glob.glob(random.choice(file_path_type))
+    random_image = random.choice(images)
+
+    
+    await message.channel.send(file=discord.File(random_image))
+
+
 
 client.run(os.getenv('discToken'))
