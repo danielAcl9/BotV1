@@ -1,10 +1,7 @@
 import os
 import discord
-
 import glob, random
-
 import requests, json
-
 from replit import db
 
 #Se crea una instancia del cliente, esta es la conexión con Discord. 
@@ -12,12 +9,12 @@ from replit import db
 client = discord.Client()
 
 #Lista de palabras que buscará 
-sad_words = ['sad', 'deppresed', 'unhappy', 'angry', 'mal', 'miserable']
+sad_words = ['sad', 'mal']
 
 starter_encour = [
   'Ánimo',
-  'Tu puedes',
-  'Eres la mejor'
+  'Si se puede',
+  'Padelante es palla'
 ]
 
 #Activar o desactivar que el bot responda a mensajes tirstes
@@ -117,5 +114,10 @@ async def on_message(message):
     else:
       db['responding'] == False
       await message.channel.send('Respondiendo desactivado')
+#---------------------------- tutorial ai
+  if msg.startswith('$aibot'):
+    pass
 
+
+    
 client.run(os.getenv('discToken'))
